@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>503 - Service Unavailable</title>
+    <title>503 - Service unavailable</title>
     <style>
       body {
         background: #7942ff;
@@ -31,7 +31,8 @@
     </style>
   </head>
   <body>
-    <h1>503 - Service Unavailable.</h1>
+    <h1>503 - Service unavailable</h1>
+    <img src="https://tos.odex.be/images/logo.svg" style="position: absolute; right: 10px; top: 10px; width: 10vw;">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="1226.887px"
@@ -146,7 +147,7 @@
         <circle fill="#FFFFFF" cx="585.701" cy="684.795" r="8.061" />
         <circle fill="#FFFFFF" cx="640.192" cy="818.792" r="8.061" />
       </g>
-      <g id="bottle">
+      <g id="bottle" onclick="bottle()">
         <path
           fill="#FFFFFF"
           d="M589.59,332.821c6.882,1.926,13.794,3.701,20.812,5.024c4.953,0.352,9.882,0.345,14.836-0.011
@@ -156,13 +157,24 @@
         />
 
         <rect
+          id="cork"
           x="641.23"
           y="254.555"
           transform="matrix(0.8856 0.4644 -0.4644 0.8856 196.4175 -269.9889)"
           fill="#C7A66F"
           width="10.258"
           height="18.461"
-        />
+          />
+            <g id="gass">
+                <circle id="gass1" opacity="0" fill="#ca00f7" cx="641" cy="254" r="4.913" />
+                <circle id="gass2" opacity="0" fill="#ca00f7" cx="643" cy="256.4" r="4.913" />
+                <circle id="gass3" opacity="0" fill="#ca00f7" cx="644.5" cy="258.8" r="7.37" />
+                <circle id="gass4" opacity="0" fill="#ca00f7" cx="647.2" cy="255" r="7.37" />
+                <circle id="gass5" opacity="0" fill="#9b00cf" cx="648.4" cy="253.9" r="5.527" />
+                <circle id="gass6" opacity="0" fill="#9b00cf" cx="648.3" cy="256.5" r="3.825" />
+                <circle id="gass7" opacity="0" fill="#FFFFFF" cx="646.9" cy="257.4" r="3.685" />
+                <circle id="gass8" opacity="0" fill="#9b00cf" cx="644" cy="255.67" r="3.685" />
+            </g>
         <path
           fill="#FFFFFF"
           d="M653.436,273.045c-0.365,0.695-1.232,0.967-1.927,0.602l-16.188-8.488
@@ -298,6 +310,27 @@
         yoyo: true,
         ease: Power1.easeInOut,
       });
+      function bottlePopped() {
+        TweenMax.to("#cork", 0.1, {opacity: 0})
+      }
+      let popped = false
+      function bottle() {
+        if(!popped) {
+            popped = true
+            console.log("Clicked on the bottle")
+            let ease = "power4.in"
+            TweenMax.to("#cork", 0.3, {rotation: 27, x: 50, y: -100,  onComplete: bottlePopped})
+            TweenMax.fromTo("#gass1", {opacity: 1}, {x: 100, y: 20, duration: 0.5, opacity: 0, ease: ease})
+            TweenMax.fromTo("#gass3", {opacity: 1}, {x: 123, y: -15, duration: 0.3, opacity: 0, ease: ease})
+            TweenMax.fromTo("#gass5", {opacity: 1}, {x: 88, y: -11.3, duration: 0.4, opacity: 0, ease: ease})
+            TweenMax.fromTo("#gass7", {opacity: 1}, {x: 100, y: -15, duration: 0.4, opacity: 0, ease: ease})
+
+            TweenMax.fromTo("#gass2", {opacity: 1}, {x: -100, y: 20, duration: 0.5, opacity: 0, ease: ease})
+            TweenMax.fromTo("#gass4", {opacity: 1}, {x: -123, y: -15, duration: 0.3, opacity: 0, ease: ease})
+            TweenMax.fromTo("#gass6", {opacity: 1}, {x: -88, y: -11.3, duration: 0.4, opacity: 0, ease: ease})
+            TweenMax.fromTo("#gass8", {opacity: 1}, {x: -100, y: -15, duration: 0.3, opacity: 0})
+        }
+      }
     </script>
   </body>
 </html>
